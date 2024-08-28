@@ -3,10 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Dog Breed Selector</title>
+    <link rel="stylesheet" href="./src/styles.css">
 </head>
 <body>
-
+    <div>
+        <h1>Select Dog Parameters</h1>
+        <select name="" id="parameterSelect">
+            <option value="">--Select Parameter--</option>
+            <option value="size">Size</option>
+            <option value="temperament">Temperament</option>
+            <option value="origin">Origin</option>
+        </select>
+        <button id="fetchBreedsBtn">Fetch Breeds</button>
+    </div>
+    <div id="breedInfo"></div>
     
     <script type="module" src="./src/main.mjs"></script>
 </body>
