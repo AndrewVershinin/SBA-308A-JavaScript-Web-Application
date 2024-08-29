@@ -24,6 +24,7 @@ export async function fetchBreeds() {
 }
 
 
+
 // Fetch the list of temperaments
 
 export async function fetchTemperaments() {
@@ -70,9 +71,58 @@ export async function fetchChildFriendlyLevel() {
             }
         });
 
-        return Array.from(childFriendlyLevel)
+        return Array.from(childFriendlyLevel).sort((a, b) => a - b);
     } catch (error) {
         console.error('Error fetching child-friendly levels:', error); 
     }
 }
 
+export async function fetchDogFriendlyLevel() {
+    try {
+        const response = await fetch(`${BASE_URL}/breeds`, {
+            headers: { 'x-api-key': API_KEY }
+        });
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok')
+        }
+
+        const breeds = await response.json();
+        const dogFriendlyLevel = new Set();
+
+        breeds.forEach(breed => {
+            if (breed.dog_friendly !== undefined) {
+                dogFriendlyLevel.add(breed.dog_friendly)
+            }
+        });
+
+        return Array.from(dogFriendlyLevel).sort((a, b) => a - b);
+    } catch (error) {
+        console.error('Error fetching dog-friendly levels:', error); 
+    }
+}
+
+export async function fetchGroomingNeedsLevel() {
+    try {
+        const response = await fetch(`${BASE_URL}/breeds`, {
+            headers: { 'x-api-key': API_KEY }
+        });
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok')
+        }
+
+        const breeds = await response.json();
+        const groomingLevel = new Set();
+
+        breeds.forEach(breed => {
+            if (breed.grooming !== undefined) {
+                groomingLevel.add(breed.grooming)
+            }
+        });
+
+        return Array.from(groomingLevel).sort((a, b) => a - b);
+    } catch (error) {
+        console.error('Error fetching grooming levels:', error); 
+    }
+}
