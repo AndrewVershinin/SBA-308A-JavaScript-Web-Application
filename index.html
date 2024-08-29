@@ -3,22 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dog Breed Selector</title>
+    <title>Cat Breed Selector</title>
     <link rel="stylesheet" href="./src/styles.css">
 </head>
 <body>
     <div>
-        <h1>Select Dog Parameters</h1>
-        <select name="" id="parameterSelect">
-            <option value="">--Select Parameter--</option>
-            <option value="size">Size</option>
-            <option value="temperament">Temperament</option>
-            <option value="origin">Origin</option>
+        <h1>Select Cat Parameters</h1>
+        <label for="temperamentSelect">Temperament:</label>
+        <select id="temperamentSelect">
+            <option value="">--Select Temperament--</option>
         </select>
+
+        <label for="childFriendlySelect">Child Friendly:</label>
+        <select id="childFriendlySelect">
+            <option value="">--Select Level--</option>
+        </select>
+
+        <label for="dogFriendlySelect">Dog Friendly:</label>
+        <select id="dogFriendlySelect">
+            <option value="">--Select Level--</option>
+        </select>
+
+        <label for="energyLevelSelect">Energy Level:</label>
+        <select id="energyLevelSelect">
+            <option value="">--Select Level--</option>
+        </select>
+
+        <label for="groomingSelect">Grooming:</label>
+        <select id="groomingSelect">
+            <option value="">--Select Level--</option>
+        </select>
+
+        <label for="healthIssuesSelect">Health Issues:</label>
+        <select id="healthIssuesSelect">
+            <option value="">--Select Level--</option>
+        </select>
+
         <button id="fetchBreedsBtn">Fetch Breeds</button>
     </div>
     <div id="breedInfo"></div>
     
-    <script type="module" src="./src/main.mjs"></script>
+    <script type="module" src="src/main.mjs"></script>
 </body>
 </html>
