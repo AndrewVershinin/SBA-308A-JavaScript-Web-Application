@@ -7,32 +7,57 @@
     <link rel="stylesheet" href="./src/styles.css">
 </head>
 <body>
+    
     <div id = "options">
         <h1>Choose your furry friend</h1>
-        <label for="temperamentSelect">Temperament:</label>
-        <select id="temperamentSelect">
-            <option value="">--Select all Temperaments--</option>
-        </select>
-
-        <label for="childFriendlySelect">Child Friendly:</label>
-        <select id="childFriendlySelect">
-            <option value="">--Select all Levels--</option>
-        </select>
-
-        <label for="dogFriendlySelect">Dog Friendly:</label>
-        <select id="dogFriendlySelect">
-            <option value="">--Select all Levels--</option>
-        </select>
-
-        <label for="grooming">Grooming:</label>
-        <select id="grooming">
-            <option value="">--Select all Levels--</option>
-        </select>
-
-        <button id="fetchBreedsBtn">Fetch Breeds</button>
+        <div>
+            <label for="temperamentSelect">Temperament:</label>
+            <select id="temperamentSelect">
+                <option value="">--Select all Temperaments--</option>
+            </select>
+        </div>
+        <div>
+            <label for="childFriendlySelect">Child Friendly:</label>
+            <select id="childFriendlySelect">
+                <option value="">--Select all Levels--</option>
+            </select>
+        </div>
+        <div>
+            <label for="dogFriendlySelect">Dog Friendly:</label>
+            <select id="dogFriendlySelect">
+                <option value="">--Select all Levels--</option>
+            </select>
+        </div>
+        <div>
+            <label for="grooming">Grooming:</label>
+            <select id="grooming">
+                <option value="">--Select all Levels--</option>
+            </select>
+        </div>
+        <div>
+            <button id="fetchBreedsBtn">
+                Fetch Breeds</button>
+        </div>
+        <div id="search">
+            <input type="text" id="breedSearch" placeholder="Search for a breed...">
+            <button id="searchBtn">
+                <img src="./src/paw-cat-pet.png" alt="Pawn Icon" class="icon"> Meow
+            </button>
+            <div id="searchResults"></div>
+        </div>
     </div>
     <div id="breedInfo"></div>
     
+    <div>
+        <form id="uploadImageForm">
+            <p>Uploade cat image to your account!</p>
+            <input type="file" id="imageFile" accept="image/*" required> <br>
+            <input type="text" id="subId" placeholder="Sub ID (optional)"> <br>
+            <input type="text" id="breedIds" placeholder="Breed IDs (comma-separated, optional)"> <br>
+            <button type="submit">Upload Image</button>
+        </form>
+        <div id="uploadResult"></div>
+    </div>
     <script type="module" src="src/main.mjs"></script>
 </body>
 </html>

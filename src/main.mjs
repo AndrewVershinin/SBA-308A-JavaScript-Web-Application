@@ -1,12 +1,18 @@
 import { fetchBreeds, fetchTemperaments, fetchChildFriendlyLevel, fetchDogFriendlyLevel, fetchGroomingNeedsLevel } from "./api.mjs";
 import { populateTemperamentSelect, displayBreeds, populateChildFriendlyLevel, populateDogFriendlyLevel, populateGroomingLevel } from "./ui.mjs";
 
+const API_KEY = "live_CaXqTJX59UPvpHs7ppXpTqwkGycKJcwBttMnYykssBGUuRBFab5bZtceolhqaTab";
 const temperamentSelect = document.getElementById('temperamentSelect');
 const childFriendlyLevelSelect = document.getElementById('childFriendlySelect');
 const dogFriendlyLevelSelect = document.getElementById('dogFriendlySelect');
 const groomingLevelSelect = document.getElementById('grooming');
 const breedBtn = document.getElementById('fetchBreedsBtn');
 const breedInfo = document.getElementById('breedInfo');
+const searchBtn = document.getElementById('searchBtn');
+const breedSearch = document.getElementById('breedSearch');
+const searchResults = document.getElementById('searchResults');
+const uploadImageForm = document.getElementById('uploadImageForm');
+const uploadResult = document.getElementById('uploadResult');
 
 // Load temperaments when the page loads
 (async function loadTemperaments() {
@@ -57,6 +63,57 @@ async function selectedOptions() {
         displayBreeds(filteredBreeds, breedInfo);
     } else {
         breedInfo.innerHTML = '<p>No breeds found with the selected filters.</p>';
-    }
-    
+    }   
 }
+
+searchBtn.addEventListener('click', async () => {
+    const searchQuery = breedSearch.value.toLowerCase();
+
+    const breeds = await fetchBreeds();
+    const filteredBreeds = breeds.filter(breed => breed.name.toLowerCase().includes(searchQuery));
+
+    if (filteredBreeds.length > 0) {
+        displayBreeds(filteredBreeds, searchResults);
+    } else {
+        searchResults.innerHTML = '<p>No breeds found.</p>';
+    }
+});
+
+uploadImageForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    const imageFile = document.getElementById('imageFile').files[0];
+    const subId = document.getElementById('subId').value;
+    const breedIds = document.getElementById('breedIds').value;
+
+    const formData = new FormData();
+    formData.append('file', imageFile);
+
+    if (subId) {
+        formData.append('sub_id', subId);
+    }
+
+    if (breedIds) {
+        formData.append('breed_ids', breedIds);
+    }
+
+    try {
+        const response = await fetch('https://api.thecatapi.com/v1/images/upload', {
+            method: 'POST',
+            headers: {
+                'x-api-key': API_KEY,
+            },
+            body: formData,
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to upload image');
+        }
+
+        const result = await response.json();
+        uploadResult.innerHTML = `<p>Image uploaded successfully! <a href="${result.url}" target="_blank">View Image</a></p>`;
+    } catch (error) {
+        console.error('Error uploading image:', error);
+        uploadResult.textContent = 'Error uploading image.';
+    }
+});
