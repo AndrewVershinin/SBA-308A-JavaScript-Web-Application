@@ -74,6 +74,7 @@ searchBtn.addEventListener('click', async () => {
 
     if (filteredBreeds.length > 0) {
         displayBreeds(filteredBreeds, searchResults);
+        
     } else {
         searchResults.innerHTML = '<p>No breeds found.</p>';
     }

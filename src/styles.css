@@ -29,7 +29,7 @@ select, button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: linear-gradient(to right, #aecce9, #e4e6eb);
+  background: radial-gradient(circle, #bfc7cf, #edf0f3);
 }
 
 .breed-card img {
@@ -147,5 +147,41 @@ button#fetchBreedsBtn:hover {
 }
 
 #searchBtn:active {
+  transform: translateY(2px); 
+}
+
+#uploadImage {
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  margin: 0 auto;
+  background-color: #f7f7f7;
+  border-radius: 10px;
+  text-align: center;
+}
+
+#uploadImage p {
+  font-size: 14px;
+  color: #777a7e;
+  font-weight: bold;
+}
+
+#uploadImageForm {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; 
+  margin: 5px;
+}
+
+#uploadImageForm button {
+  border: none;
+  border-radius: 5px;
+}
+
+#uploadImageForm button:hover{
+  background-color: #ced4da;
+}
+
+#uploadImageForm button:active {
   transform: translateY(2px); 
 }
